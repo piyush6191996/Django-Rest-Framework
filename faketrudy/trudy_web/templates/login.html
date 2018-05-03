@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+
+<h3>Welcome to TRUDY Web</h3>
+<div class="container">
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit">Login</button>
+
+</form>
+</div>
+
+<button><a href="{% url 'trudy_web:signup' %}">Sign Up</a></button>
+
+</body>
+</html>

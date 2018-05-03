@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+<h3>Hello {{ user }}</h3>
+
+<br>
+
+<h4>Children:</h4>
+
+{% if not children %}
+    <p>You have not added your child yet</p>
+{% endif %}
+
+{% for child in children %}
+
+    <a href="{% url 'trudy_web:child' child.pk %}">{{ child.name }}</a>
+
+    <br>
+    &nbsp; &nbsp;
+
+    {% if not child.oauth_token and not child.oauth_secret %}
+        <a href="">Connect With Twitter</a>
+    {% endif %}
+
+    <br><br>-------------------------------------------------------------------<br>
+
+{% endfor %}
+
+<br><br>
+
+<h3>Add a Child</h3>
+
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    Name:
+        <input type="text" name="name" placeholder="Enter Child's name"><br>
+    Age:
+        <input type="number" name="age" placeholder="Enter age of Child"><br>
+    Gender:
+        <select name="gender">
+            <option>--Select Gender--</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select><br>
+        <!--<input type="text" name="gender" placeholder="Enter Gender of the Child"><br>-->
+
+    <input type="submit" value="Add Child">
+
+</form>
+
+
+</body>
+</html>
